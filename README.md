@@ -1,6 +1,6 @@
 # 30 Hours IoT Workshop Using ESP32 ⚡️📡
 
-Welcome to the **30 Hours IoT Workshop Using ESP32** repository! This project repository contains a comprehensive set of lessons and example codes designed to help you master IoT development using the powerful ESP32 microcontroller.
+Welcome to the **30 Hours IoT Workshop Using ESP32** repository! This project repository contains a comprehensive set of lessons and example codes designed to help you master IoT development using the powerful RISC ESP32 microcontroller.
 
 ---
 
@@ -42,28 +42,11 @@ This workshop is a hands-on learning journey covering fundamental to advanced Io
 
 ---
 
-## 📁 Repository Structure
-
-The repository contains multiple folders and example sketches named according to the topic or sensor, such as:
-
-- `10_switch_case`  
-- `19_dht11_sensor`  
-- `23_16x2_lcd_display`  
-- `26_RC522_RFID_Module`  
-- `28_ESP32_Bluetooth_SerialPrint`  
-- `33_BlynkApp_Ledon_Ledoff`  
-- `35_esp32_firebase_attendance_system`  
-- And many more...
-
-Each folder contains Arduino IDE compatible `.ino` files with well-commented code for easy understanding.
-
----
-
 ## 🧰 Getting Started
 
 1. **Setup Arduino IDE:**  
    - Install the latest Arduino IDE from [arduino.cc](https://www.arduino.cc/en/software)  
-   - Add ESP32 board support via the Board Manager (https://github.com/espressif/arduino-esp32)  
+   - Add ESP32 board support via the Board Manager ([https://github.com/espressif/arduino-esp32](https://espressif.github.io/arduino-esp32/package_esp32_index.json))  
 
 2. **Connect your ESP32:**  
    - Use a USB cable to connect your ESP32 board to your computer  
@@ -75,7 +58,7 @@ Each folder contains Arduino IDE compatible `.ino` files with well-commented cod
    - Install libraries such as `DHT`, `OneWire`, `LiquidCrystal_I2C`, `MFRC522`, `Blynk`, etc., via the Library Manager  
 
 5. **Upload & Test:**  
-   - Select the correct ESP32 board and COM port  
+   - Select the correct ESP32 board (Doit ESP32 Devkit v1) and COM port  
    - Upload the sketch and observe the output on Serial Monitor, LCD, or connected devices  
 
 ---
