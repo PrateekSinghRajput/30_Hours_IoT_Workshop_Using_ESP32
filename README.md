@@ -87,11 +87,17 @@ Each folder contains Arduino IDE compatible `.ino` files with well-commented cod
 - Developers interested in sensor integration, Bluetooth, RFID, web servers, and cloud IoT with ESP32  
 
 ---
-![Box](https://github.com/user-attachments/assets/87ea4dc9-0ac8-4754-b68f-8a5b0a03cf12)
+![Box](https://github.com/user-attachments/assets/ceede1e3-d0d5-48e7-96e4-d221eaa6cf3f)
+
+---
 
 ![IMG_9596](https://github.com/user-attachments/assets/86736d56-07df-4304-8d80-b2a09bceb56a)
 
+---
+
 ![IMG_9598](https://github.com/user-attachments/assets/04dea02b-a10d-4f04-bfa7-c224e27fe593)
+
+---
 
 ![IMG_9597](https://github.com/user-attachments/assets/f972932a-3a4c-43f3-931a-58985b0612e1)
 
