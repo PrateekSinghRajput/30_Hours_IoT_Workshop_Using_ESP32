@@ -13,10 +13,11 @@ U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
 byte validUID[] = { 0x66, 0x76, 0x7D, 0x3D };
-byte lastUID[4] = { 0, 0, 0, 0 };
 
 unsigned long relayOnTime = 0;
 bool relayTriggered = false;
+
+bool cardPresent = false;
 
 void setup() {
   Serial.begin(115200);
@@ -37,27 +38,30 @@ void setup() {
 }
 
 void loop() {
+
   if (relayTriggered) {
     unsigned long timeLeft = 6000 - (millis() - relayOnTime);
     if ((long)timeLeft <= 0) {
       digitalWrite(RELAY_PIN, LOW);
       digitalWrite(LED_PIN, LOW);
       relayTriggered = false;
-      clearLastUID();
       Serial.println("Relay OFF");
       displayMessage("Scan an RFID card...");
     } else {
       displayRelayCountdown(timeLeft);
     }
+  }
+
+  if (!mfrc522.PICC_IsNewCardPresent()) {
+
+    cardPresent = false;
     return;
   }
 
-  if (!mfrc522.PICC_IsNewCardPresent()) return;
   if (!mfrc522.PICC_ReadCardSerial()) return;
 
-  if (!isSameUID(mfrc522.uid.uidByte, mfrc522.uid.size, lastUID, sizeof(lastUID))) {
-
-    copyUID(lastUID, mfrc522.uid.uidByte, mfrc522.uid.size);
+  if (!cardPresent) {
+    cardPresent = true;
 
     bool validCard = checkUID(mfrc522.uid.uidByte, mfrc522.uid.size);
 
@@ -75,30 +79,11 @@ void loop() {
       buzzerBeep();
       displayAccessDenied();
     }
+  } else {
   }
 
   mfrc522.PICC_HaltA();
   mfrc522.PCD_StopCrypto1();
-}
-
-void copyUID(byte* dest, byte* src, byte len) {
-  for (byte i = 0; i < len; i++) {
-    dest[i] = src[i];
-  }
-}
-
-bool isSameUID(byte* uid1, byte len1, byte* uid2, byte len2) {
-  if (len1 != len2) return false;
-  for (byte i = 0; i < len1; i++) {
-    if (uid1[i] != uid2[i]) return false;
-  }
-  return true;
-}
-
-void clearLastUID() {
-  for (byte i = 0; i < sizeof(lastUID); i++) {
-    lastUID[i] = 0;
-  }
 }
 
 bool checkUID(byte* uid, byte uidLength) {
